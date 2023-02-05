@@ -23,34 +23,37 @@
       <table id="inputTable">
       <tr>
         <td rowspan="7" bgcolor="wheat" width="50%" style="text-align: left;">
-          <h1>Instruction:</h1>
           <p>This calculator will count the days from your BNO VISA approval date to see if you satisfy the rules:<br>
-          此日子計算機將根據你的BNO VISA批核日期來計算你是否符合：</p>
-
-          <p><u>1. 5-years VISA and apply for Indefinite Leave to Remain(ILR)</u><br>
+            
+          <p><u>1) 5-years VISA and apply for Indefinite Leave to Remain (ILR)</u><br>
           You must have spent no more than 180 days outside the UK in any 12 month period.<br>
-          
-          <p><u>2. After 1-year on ILR – eligible to apply for British Citizenship (BC)</u><br>
+              
+          <p><u>2) After 1-year on ILR – eligible to apply for British Citizenship (BC)</u><br>
           You must spent no more than 450 days outside the UK during the 5 years before your application.<br>
-          You must spent no more than 90 days outside the UK in the last 12 months.</p>
+          You must spent no more than 90 days outside the UK in the last 12 months.
           
-          <p><u>1. 5年簽証以申請永久居留權</u><br>
+          <p>- Must enter the BNO VISA approval Date. <br>
+            
+          <p>- Must enter the First time enter UK Date. (Accepting a date before the approval date if you use LOTR / other method) <br>
+          <p>- Please enter the leave UK date and enter UK date by trip. Please leave blank if you didn't have 8 trips.<br></p>
+              
+          <hr>
+          
+          <p>此日子計算機將根據你的BNO VISA批核日期來計算你是否符合：</p>
+          <p><u>1) 5年簽証以申請永久居留權</u><br>
           申請人必須在英國連續居住 5 年，5 年期間任何連續的 12 個月內，不能離開英國多於 180 天<br></p>
-          <p><u>2. ILR滿1年後 - 可以申請成為英國公民 (BC)</u><br>
+          <p><u>2) ILR滿1年後 - 可以申請成為英國公民 (BC)</u><br>
           申請人取得永久居留權後需要住多 1 年，即第 6 年可申請入籍<br>
           申請人在入籍前 5 年內，不能離開英國多於 450 天，申請前 12 個月內不能離開英國多於 90 天 </p>
-          <h3>
-            <p>- Must enter the BNO VISA approval Date. <br>
-          - 必需輸入 BNO VISA 批核日期。</p>
-          <p>
-          - Must enter the First time enter UK Date. <br>
-          (Accepting a date before the approval date if you use LOTR / other method) <br>
-          - 必需輸入首次進入英國日期。<br>
-          （接受因經LOTR / 其他方法而在批核日期前進入英國）</p>
-          - Please enter the leave UK date and enter UK date by trip. Please leave blank if you didn't have 8 trips.<br>
-          - To be added.<br>
-        </h3>
-          <p>version: 0.1 <br>
+          <p>- 必需輸入 BNO VISA 批核日期。</p>
+          <p>- 必需輸入首次進入英國日期。 （接受因經LOTR / 其他方法而在批核日期前進入英國）</p>
+          <p>- 請根據你離開及進入英國的日期於Trip中填寫。請將未用到的表格留空。</p>
+
+
+          <hr>
+          <p>Disclaimer: The information provided on this Website is for reference only. Please seek for the professionals or officials comments if needed.
+          <p>免責聲明: 本網站所載的資料只供參考之用。如有需要，請尋求專業人士或官方協助。</p>
+          <p>Version: 0.1 <br>
           Support by buy me a coffee :) Thank you so much <br>
           <a href="https://www.buymeacoffee.com/visualgary" target="_blank">https://www.buymeacoffee.com/visualGary</a></p>
         </td>
@@ -150,16 +153,24 @@
     <table>
       <tr>
         <td style="border: 0" >
-          <h2>Not more than 180 days in any 12 rolling months:
+          <h2>Not more than 180 days in any 12 rolling months during the 5 years before ILR application: 
           <output id="DayCountConclusion1"></output></h2>
         </td>
+      </tr>
+      <tr>
         <td style="border: 0">
-          <h2>Not more than 450 days outside the UK during the 5 years:
+          <h2>Not more than 450 days outside the UK during the 5 years before BC application:
           <output id="DayCountConclusion2"></output></h2>
         </td>
       </tr>
       <tr>
-        <td style="border: 0" colspan="2" id="DayCountConclusion3">
+        <td style="border: 0">
+          <h2>Not more than 90 days outside the UK in the last 12 months before BC application:
+          <output id="DayCountConclusion3"></output></h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="border: 0" colspan="3" id="DayCountConclusion4">
         </td>
       </tr>
     </table>
@@ -177,7 +188,7 @@
             <th>Trip 6</th>
             <th>Trip 7</th>
             <th>Trip 8</th>
-            <th>TOTAL</th>
+            <!--<th>TOTAL</th> -->
           </tr>
         </thead>
         <tbody id="tripTableBody">
@@ -192,7 +203,7 @@
             <th style="background-color: white" id="trip6-result"></th>
             <th style="background-color: white" id="trip7-result"></th>
             <th style="background-color: white" id="trip8-result"></th>
-            <th style="background-color: rgb(244, 237, 225)wheat" id="total-result"></th>
+            <!-- <th style="background-color: rgb(244, 237, 225)wheat" id="total-result"></th> -->
           </tr>
         </tbody>
       </table>
@@ -322,7 +333,7 @@
         const trip8EnterDate = new Date(document.querySelector("#trip8-enter-date").value);
 
         enumYears = []
-        for (let i = 0 ; i < 6 ; i++){
+        for (let i = 0 ; i < 7 ; i++){
           enumYears[i] = approvalDate.getFullYear()+i;
         }
 
@@ -337,7 +348,8 @@
         let trip8DaysOutsideUK = 0;
         let totalDaysOutsideUK = 0;
 
-        const rows = 6;
+        // create the 2d array for count rolling months
+        const rows = 7;
         const columns = 12;
 
         for (let i = 0; i < rows; i++) {
@@ -370,7 +382,7 @@
         document.querySelector("#trip6-result").innerHTML = trip6DaysOutsideUK;
         document.querySelector("#trip7-result").innerHTML = trip7DaysOutsideUK;
         document.querySelector("#trip8-result").innerHTML = trip8DaysOutsideUK;
-        document.querySelector("#total-result").innerHTML = totalDaysOutsideUK;
+        //document.querySelector("#total-result").innerHTML = totalDaysOutsideUK;
 
         // table 
         let holidayDays = {};
@@ -425,10 +437,8 @@
                 colourExceed180Days += 1;
               }
             }
-            
             rowElement.appendChild(cellElement);
           }
-          
           tableContainer.appendChild(rowElement);
         }
 
@@ -439,16 +449,22 @@
           document.querySelector("#DayCountConclusion1").innerHTML = `<font color="green">  ✓  </font>`;
         }
 
-        if (totalDaysOutsideUK > 450){
-          document.querySelector("#DayCountConclusion2").innerHTML = `<font color="red">  X  </font>`;
-        } else {
-          document.querySelector("#DayCountConclusion2").innerHTML = `<font color="green">  ✓  </font>`;
-        }
+        // if (totalDaysOutsideUK > 450){
+        //   document.querySelector("#DayCountConclusion2").innerHTML = `<font color="red">  X  </font>`;
+        // } else {
+        //   document.querySelector("#DayCountConclusion2").innerHTML = `<font color="green">  ✓  </font>`;
+        // }
         
+        // if (totalDaysOutsideUK > 450){
+        //   document.querySelector("#DayCountConclusion3").innerHTML = `<font color="red">  X  </font>`;
+        // } else {
+        //   document.querySelector("#DayCountConclusion3").innerHTML = `<font color="green">  ✓  </font>`;
+        // }
+
         if (daySum > 180 || totalDaysOutsideUK > 450){
-          document.querySelector("#DayCountConclusion3").innerHTML = `<h2><font color="red">Unfortunately, you may not fulfil the settlement requirement.</font></h2>`;
+          document.querySelector("#DayCountConclusion4").innerHTML = `<h2><font color="red">Unfortunately, you may failed the settlement / BC requirement.</font></h2>`;
         } else {
-          document.querySelector("#DayCountConclusion3").innerHTML = `<h2><font color="green">Congratulations! You didn't not exceed the allowed days of outside UK days for now.</font></h2>`;
+          document.querySelector("#DayCountConclusion4").innerHTML = `<h2><font color="green">Congratulations! You didn't not exceed the allowed days of outside UK days for now.</font></h2>`;
         }
         document.querySelector("#resultContainer").style.display = "block";
       }
