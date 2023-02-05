@@ -28,10 +28,7 @@
           - Must enter the BNO VISA approval Date. <br><br>
           - Must enter the First time enter UK Date. <br>
           (Accepting a date before the approval date if you use LOTR / other method) <br><br>
-          - To be added.<br><br><br><br><br><br>
-          version: 1.0 <br>
-          Support by buy me a coffee :) Thank you so much <br>
-          <a href="https://www.buymeacoffee.com/visualgary" target="_blank">https://www.buymeacoffee.com/visualGary</a>
+          - To be added.<br><br>
           </h3>
         </td>
         <th colspan="2">
@@ -126,23 +123,10 @@
       </table>
 </form>
 
-<div id="resultContainer" style="display: none">
-    <table>
-      <tr>
-        <td style="border: 0" >
-          <h2>Not more than 180 days in any 12 rolling months:
-          <output id="DayCountConclusion1"></output></h2>
-        </td>
-        <td style="border: 0">
-          <h2>Not more than 450 days outside the UK during the 5 years:
-          <output id="DayCountConclusion2"></output></h2>
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 0" colspan="2" id="DayCountConclusion3">
-        </td>
-      </tr>
-    </table>
+<div id="resultContainer" style="display: None">
+    <br>
+    <h1>Results:</h1>
+    <p id="DayCountConclusion"></p>
     <div>
       <table id="tripTable">
         <thead>
@@ -163,7 +147,7 @@
         <tbody id="tripTableBody">
           <tr>
             <th width="400">No. of full days outside UK</th>
-            <th style="background-color: white" id="trip0-result"></th>
+            <th style="background-color: white" id="trip0-result">0</th>
             <th style="background-color: white" id="trip1-result"></th>
             <th style="background-color: white" id="trip2-result"></th>
             <th style="background-color: white" id="trip3-result"></th>
@@ -414,22 +398,15 @@
 
         // print out conclusion
         if (daySum > 180){
-          document.querySelector("#DayCountConclusion1").innerHTML = `<font color="red">  X  </font>`;
+          document.querySelector("#DayCountConclusion").innerHTML = `<h2>Unfortunately, you have over 180 days outside UK rule in the below highlight period.</h2>`;
         } else {
-          document.querySelector("#DayCountConclusion1").innerHTML = `<font color="green">  ✓  </font>`;
-        }
-
-        if (totalDaysOutsideUK > 450){
-          document.querySelector("#DayCountConclusion2").innerHTML = `<font color="red">  X  </font>`;
-        } else {
-          document.querySelector("#DayCountConclusion2").innerHTML = `<font color="green">  ✓  </font>`;
+          if (totalDaysOutsideUK > 450){
+            document.querySelector("#DayCountConclusion").innerHTML = `<h2>Unfortunately, you have exceeded the 450 days outside UK rule over 5 years.</h2>`;
+          } else {
+            document.querySelector("#DayCountConclusion").innerHTML = `<h2>Congratulations! You didn't not exceed the allowed days of outside UK days for now.</h2>`;
+          }
         }
         
-        if (daySum > 180 || totalDaysOutsideUK > 450){
-          document.querySelector("#DayCountConclusion3").innerHTML = `<h2><font color="red">Unfortunately, you may not fulfil the settlement requirement.</font></h2>`;
-        } else {
-          document.querySelector("#DayCountConclusion3").innerHTML = `<h2><font color="green">Congratulations! You didn't not exceed the allowed days of outside UK days for now.</font></h2>`;
-        }
         document.querySelector("#resultContainer").style.display = "block";
       }
     </script>
