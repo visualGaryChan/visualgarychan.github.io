@@ -23,15 +23,14 @@
       <table id="inputTable">
       <tr>
         <td rowspan="7" bgcolor="wheat" width="50%" style="text-align: left;">
-          
-          <p><u>1) 5-years VISA and apply for Indefinite Leave to Remain (ILR)</u><br>
-            You must have spent no more than 180 days outside the UK in any 12 month period.<br>
+          <p>This calculator will count the days from your BNO VISA approval date to see if you satisfy the rules:<br>
             
+          <p><u>1) 5-years VISA and apply for Indefinite Leave to Remain (ILR)</u><br>
+          You must have spent no more than 180 days outside the UK in any 12 month period.<br>
+              
           <p><u>2) After 1-year on ILR – eligible to apply for British Citizenship (BC)</u><br>
-              You must spent no more than 450 days outside the UK during the 5 years before your application.<br>
-              You must spent no more than 90 days outside the UK in the last 12 months.
-
-          <p>This calculator will count the days from your BNO VISA approval date to see if you satisfy the rule 1.<br>
+          You must spent no more than 450 days outside the UK during the 5 years before your application.<br>
+          You must spent no more than 90 days outside the UK in the last 12 months.
           
           <p>- Must enter the BNO VISA approval Date. <br>
             
@@ -39,13 +38,13 @@
           <p>- Please enter the leave UK date and enter UK date by trip. Please leave blank if you didn't have 8 trips.<br></p>
               
           <hr>
+          
+          <p>此日子計算機將根據你的BNO VISA批核日期來計算你是否符合：</p>
           <p><u>1) 5年簽証以申請永久居留權</u><br>
-            申請人必須在英國連續居住 5 年，5 年期間任何連續的 12 個月內，不能離開英國多於 180 天<br></p>
+          申請人必須在英國連續居住 5 年，5 年期間任何連續的 12 個月內，不能離開英國多於 180 天<br></p>
           <p><u>2) ILR滿1年後 - 可以申請成為英國公民 (BC)</u><br>
-              申請人取得永久居留權後需要住多 1 年，即第 6 年可申請入籍<br>
-              申請人在入籍前 5 年內，不能離開英國多於 450 天，申請前 12 個月內不能離開英國多於 90 天 </p>
-              
-          <p>此日子計算機將根據你的BNO VISA批核日期來計算你是否符合上述之 (1)。</p>
+          申請人取得永久居留權後需要住多 1 年，即第 6 年可申請入籍<br>
+          申請人在入籍前 5 年內，不能離開英國多於 450 天，申請前 12 個月內不能離開英國多於 90 天 </p>
           <p>- 必需輸入 BNO VISA 批核日期。</p>
           <p>- 必需輸入首次進入英國日期。 （接受因經LOTR / 其他方法而在批核日期前進入英國）</p>
           <p>- 請根據你離開及進入英國的日期於Trip中填寫。請將未用到的表格留空。</p>
@@ -156,6 +155,18 @@
         <td style="border: 0" >
           <h2>Not more than 180 days in any 12 rolling months during the 5 years before ILR application: 
           <output id="DayCountConclusion1"></output></h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="border: 0">
+          <h2>Not more than 450 days outside the UK during the 5 years before BC application:
+          <output id="DayCountConclusion2"></output></h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="border: 0">
+          <h2>Not more than 90 days outside the UK in the last 12 months before BC application:
+          <output id="DayCountConclusion3"></output></h2>
         </td>
       </tr>
       <tr>
@@ -438,8 +449,20 @@
           document.querySelector("#DayCountConclusion1").innerHTML = `<font color="green">  ✓  </font>`;
         }
 
+        // if (totalDaysOutsideUK > 450){
+        //   document.querySelector("#DayCountConclusion2").innerHTML = `<font color="red">  X  </font>`;
+        // } else {
+        //   document.querySelector("#DayCountConclusion2").innerHTML = `<font color="green">  ✓  </font>`;
+        // }
+        
+        // if (totalDaysOutsideUK > 450){
+        //   document.querySelector("#DayCountConclusion3").innerHTML = `<font color="red">  X  </font>`;
+        // } else {
+        //   document.querySelector("#DayCountConclusion3").innerHTML = `<font color="green">  ✓  </font>`;
+        // }
+
         if (daySum > 180 || totalDaysOutsideUK > 450){
-          document.querySelector("#DayCountConclusion4").innerHTML = `<h2><font color="red">Unfortunately, you may failed the settlement requirement.</font></h2>`;
+          document.querySelector("#DayCountConclusion4").innerHTML = `<h2><font color="red">Unfortunately, you may failed the settlement / BC requirement.</font></h2>`;
         } else {
           document.querySelector("#DayCountConclusion4").innerHTML = `<h2><font color="green">Congratulations! You didn't not exceed the allowed days of outside UK days for now.</font></h2>`;
         }
